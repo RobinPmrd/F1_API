@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.F1api.model.ConstructorStanding;
 import com.F1api.model.ConstructorStandingRow;
 import com.F1api.repository.ConstructorStandingRepository;
 
@@ -20,5 +21,9 @@ public class ConstructorStandingService {
 	
 	public List<ConstructorStandingRow> getConstructorStanding(int season, String race_name) {
 		return csr.findConstructorStanding(season, race_name);
+	}
+	
+	public List<ConstructorStanding> getConstructorStandingByRaces(int constructor_id, List<Integer> race_ids) {
+		return csr.findByConstructorIdAndRaceIdIn(constructor_id, race_ids);
 	}
 }

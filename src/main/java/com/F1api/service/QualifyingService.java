@@ -17,4 +17,8 @@ public class QualifyingService {
 	public List<Qualifying> getRaceQualifying(String race_name, int season) {
 		return qr.findRaceQualifying(race_name, season);
 	}
+	
+	public List<Qualifying> getRaceQualifying(int id) {
+		return qr.findByRaceid(id);
+	}
 }

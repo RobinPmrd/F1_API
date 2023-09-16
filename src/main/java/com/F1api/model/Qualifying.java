@@ -14,7 +14,7 @@ public class Qualifying {
 	@Column(name = "qualifyid")
 	private int id;
 	@Column(name = "raceid")
-	private int race_id;
+	private int raceid;
 	@OneToOne
 	@JoinColumn(name = "driverid", referencedColumnName = "driverid")
 	private Driver driver;
@@ -36,7 +36,7 @@ public class Qualifying {
 		return id;
 	}
 	public int getRaceId() {
-		return race_id;
+		return raceid;
 	}
 	public Driver getDriver() {
 		return driver;

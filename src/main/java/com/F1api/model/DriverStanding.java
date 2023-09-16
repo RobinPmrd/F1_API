@@ -12,9 +12,9 @@ public class DriverStanding {
 	@Column(name = "driverstandingsid")
 	private int driver_standings_id;
 	@Column(name = "raceid")
-	private int race_id;
+	private int raceId;
 	@Column(name = "driverid")
-	private int driver_id;
+	private int driverId;
 	@Column(name = "points")
 	private float points;
 	@Column(name = "position")
@@ -28,10 +28,10 @@ public class DriverStanding {
 		return driver_standings_id;
 	}
 	public int getRaceId() {
-		return race_id;
+		return raceId;
 	}
 	public int getDriverId() {
-		return driver_id;
+		return driverId;
 	}
 	public float getPoints() {
 		return points;

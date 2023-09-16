@@ -12,9 +12,9 @@ public class ConstructorStanding {
 	@Column(name = "constructorstandingsid")
 	private int constructor_standings_id;
 	@Column(name = "raceid")
-	private int race_id;
+	private int raceId;
 	@Column(name = "constructorid")
-	private int constructor_id;
+	private int constructorId;
 	@Column(name = "points")
 	private float points;
 	@Column(name = "position")
@@ -28,10 +28,10 @@ public class ConstructorStanding {
 		return constructor_standings_id;
 	}
 	public int getRaceId() {
-		return race_id;
+		return raceId;
 	}
 	public int getConstructorId() {
-		return constructor_id;
+		return constructorId;
 	}
 	public float getPoints() {
 		return points;

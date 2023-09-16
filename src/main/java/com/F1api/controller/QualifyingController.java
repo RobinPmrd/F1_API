@@ -24,4 +24,10 @@ public class QualifyingController {
 	public List<Qualifying> getRaceQualifying(@PathVariable(name = "race_name") String race_name, @PathVariable(name = "season") int season) {
 		return qualifying_service.getRaceQualifying(race_name, season);
 	}
+	
+	@GetMapping(value = "/{id}")
+	@CrossOrigin( origins = "*")
+	public List<Qualifying> getRaceQualifying(@PathVariable(name = "id") int id) {
+		return qualifying_service.getRaceQualifying(id);
+	}
 }

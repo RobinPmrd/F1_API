@@ -4,6 +4,7 @@ public interface ConstructorStandingRow {
 	
 	int getPosition();
 	int getPoints();
+	Integer getConstructorId();
 	String getName();
 	String getNationality();
 }

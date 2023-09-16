@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.F1api.model.ConstructorStanding;
 import com.F1api.model.ConstructorStandingRow;
+import com.F1api.model.DriverStanding;
 import com.F1api.model.DriverStandingRow;
 import com.F1api.service.ConstructorStandingService;
 import com.F1api.service.DriverStandingService;
@@ -34,6 +36,12 @@ public class StandingController {
 		return driver_standings_service.getDriverStanding(season, race_name);
 	}
 	
+	@GetMapping(value = "/{driver_id}/{race_ids}")
+	@CrossOrigin( origins = "*")
+	public List<DriverStanding> getDriverStandingByRaces(@PathVariable(name = "driver_id") int driver_id, @PathVariable(name = "race_ids") List<Integer> race_ids) {
+		return driver_standings_service.getDriverStandingByRaces(driver_id, race_ids);
+	}
+	
 	@GetMapping(value = "/constructors/{season}")
 	@CrossOrigin( origins = "*")
 	public List<ConstructorStandingRow> getConstructorStanding(@PathVariable(name = "season") int season) {
@@ -44,5 +52,11 @@ public class StandingController {
 	@CrossOrigin( origins = "*")
 	public List<ConstructorStandingRow> getConstructorStanding(@PathVariable(name = "season") int season, @PathVariable(name = "race_name") String race_name) {
 		return constructor_standings_service.getConstructorStanding(season, race_name);
+	}
+	
+	@GetMapping(value = "/constructors/id/{constructor_id}/{race_ids}")
+	@CrossOrigin( origins = "*")
+	public List<ConstructorStanding> getConstructorStandingByRaces(@PathVariable(name = "constructor_id") int constructor_id, @PathVariable(name = "race_ids") List<Integer> race_ids) {
+		return constructor_standings_service.getConstructorStandingByRaces(constructor_id, race_ids);
 	}
 }
