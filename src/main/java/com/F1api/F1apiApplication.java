@@ -44,7 +44,7 @@ public class F1apiApplication implements CommandLineRunner{
 //		for (Circuit circuit : circuits) {
 //			System.out.println(circuit.getName() + " " + circuit.getRaces());
 //		}
-//		dsr.getDriverStanding(2020).forEach(row -> System.out.println(row.getSurname() + " " + row.getTeam() + " " + row.getPoints()));
+//		dsr.getDriverStanding(2023).forEach(row -> System.out.println(row.getDriver().getSurname() + " " + row.getTeam() + " " + row.getPoints()));
 //		cts.getConstructors().stream().filter(c -> c.getName().equals("Team Lotus")).forEach(c -> System.out.println(c.getName() + " " + c.getTitles()));
 	}
 	

@@ -19,8 +19,8 @@ public class DriverStandingService {
 		return dsr.findStanding(season);
 	}
 	
-	public List<DriverStandingRow> getDriverStanding(int season, String race_name) {
-		return dsr.findStanding(season, race_name);
+	public List<DriverStandingRow> getDriverStanding(int season, int race_id) {
+		return dsr.findStanding(season, race_id);
 	}
 	
 	public List<DriverStanding> getDriverStandingByRaces(int driver_id, List<Integer> race_ids) {

@@ -11,14 +11,10 @@ import com.F1api.model.Result;
 @Repository
 public interface ResultRepository extends JpaRepository<Result, Integer> {
 	
-	@Query(value = "SELECT re.* FROM results re JOIN races r on r.raceid = re.raceid WHERE r.name = :race_name AND r.year = :season", nativeQuery = true)
-	List<Result> findRaceResults(String race_name, int season);
-	
 	List<Result> findByRaceid(int id);
 	
-	@Query(value = "select re.* from results re\r\n"
-			+ "join races r on r.raceid = re.raceid\r\n"
-			+ "join drivers d on d.driverid = re.driverid\r\n"
-			+ "where r.year = :season and d.driverid = :driver_id", nativeQuery = true)
+	@Query(value = "select re from Result re "
+			+ "join Race r on r.id = re.raceid "
+			+ "where r.year = :season and re.driver.id = :driver_id")
 	List<Result> findDriverResultsBySeason(int season, int driver_id);
 }

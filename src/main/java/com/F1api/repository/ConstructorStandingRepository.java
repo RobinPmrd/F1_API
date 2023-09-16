@@ -13,20 +13,20 @@ import com.F1api.model.DriverStanding;
 @Repository
 public interface ConstructorStandingRepository extends JpaRepository<ConstructorStanding, Integer> {
 	
-	@Query(value = "select ROW_NUMBER() OVER(order by sum(re.points) desc) as position, sum(re.points) as points, c.constructorid, c.name, c.nationality  from constructorresults re\r\n"
-			+ "join races r on r.raceid = re.raceid\r\n"
-			+ "join constructors c on c.constructorid = re.constructorid\r\n"
+	@Query(value = "select NEW com.F1api.model.ConstructorStandingRow(CAST(ROW_NUMBER() OVER(order by sum(re.points) desc) AS Integer),"
+			+ " sum(re.points), re.constructor)  from ConstructorResult re\r\n"
+			+ "join Race r on r.id = re.race_id\r\n"
 			+ "where r.year = :season\r\n"
-			+ "group by c.constructorid, c.name, c.nationality", nativeQuery = true)
+			+ "group by re.constructor")
 	List<ConstructorStandingRow> findConstructorStanding(int season);
 	
-	@Query(value = "select ROW_NUMBER() OVER(order by sum(re.points) desc) as position, sum(re.points) as points, c.constructorid, c.name, c.nationality  from constructorresults re\r\n"
-			+ "join races r on r.raceid = re.raceid\r\n"
-			+ "join constructors c on c.constructorid = re.constructorid\r\n"
-			+ "where r.year = :season and r.round <= (select round from races\r\n"
-			+ "								   		  where year = :season and name like :race_name)\r\n"
-			+ "group by (c.name, c.nationality)", nativeQuery = true)
-	List<ConstructorStandingRow> findConstructorStanding(int season, String race_name);
+	@Query(value = "select NEW com.F1api.model.ConstructorStandingRow(CAST(ROW_NUMBER() OVER(order by sum(re.points) desc) AS Integer),"
+			+ " sum(re.points), re.constructor)  from ConstructorResult re\r\n"
+			+ "join Race r on r.id = re.race_id\r\n"
+			+ "where r.year = :season and r.round <= (select round from Race\r\n"
+			+ "								   		  where year = :season and id = :race_id)\r\n"
+			+ "group by re.constructor")
+	List<ConstructorStandingRow> findConstructorStanding(int season, int race_id);
 	
 	List<ConstructorStanding> findByConstructorIdAndRaceIdIn(int constructor_id, List<Integer> race_ids);
 }

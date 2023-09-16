@@ -11,13 +11,10 @@ import com.F1api.model.Result;
 
 @Repository
 public interface ConstructorResultRepository extends JpaRepository<ConstructorResult, Integer> {
-	@Query(value = "SELECT re.* FROM results re JOIN races r on r.raceid = re.raceid WHERE r.name = :race_name AND r.year = :season", nativeQuery = true)
-	List<Result> findRaceResults(String race_name, int season);
 	
-	@Query(value = "select re.* from constructorresults re\r\n"
-			+ "join races r on r.raceid = re.raceid\r\n"
-			+ "join constructors d on d.constructorid = re.constructorid\r\n"
-			+ "where r.year = :season and d.name like :name", nativeQuery = true)
-	List<ConstructorResult> findConstructorResultsBySeason(int season, String name);
+	@Query(value = "select re from ConstructorResult re "
+			+ "join Race r on r.id = re.race_id "
+			+ "where r.year = :season and re.constructor.id = :constructor_id")
+	List<ConstructorResult> findConstructorResultsBySeason(int season, int constructor_id);
 	
 }

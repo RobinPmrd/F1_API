@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.F1api.model.ConstructorResult;
 import com.F1api.model.Result;
+import com.F1api.model.SprintResult;
 import com.F1api.repository.ConstructorResultRepository;
 import com.F1api.repository.ResultRepository;
+import com.F1api.repository.SprintResultRepository;
 
 @Service
 public class ResultService {
@@ -16,20 +18,22 @@ public class ResultService {
 	private ResultRepository rr;
 	@Autowired
 	private ConstructorResultRepository crr;
+	@Autowired
+	private SprintResultRepository srr;
 	
-	public List<Result> getRaceResult(String race_name, int season) {
-		return rr.findRaceResults(race_name, season);
+	public List<Result> getRaceResult(int race_id) {
+		return rr.findByRaceid(race_id);
 	}
 	
-	public List<Result> getRaceResult(int id) {
-		return rr.findByRaceid(id);
+	public List<SprintResult> getRaceSprintResult(int race_id) {
+		return srr.findByRaceid(race_id);
 	}
 	
 	public List<Result> getDriverResultsBySeason(int season, int driver_id) {
 		return rr.findDriverResultsBySeason(season, driver_id);
 	}
 	
-	public List<ConstructorResult> getConstructorResultsBySeason(int season, String name) {
-		return crr.findConstructorResultsBySeason(season, name);
+	public List<ConstructorResult> getConstructorResultsBySeason(int season, int constructor_id) {
+		return crr.findConstructorResultsBySeason(season, constructor_id);
 	}
 }

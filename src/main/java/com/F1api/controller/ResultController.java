@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.F1api.model.ConstructorResult;
 import com.F1api.model.Result;
+import com.F1api.model.SprintResult;
 import com.F1api.service.ResultService;
 
 @RestController
@@ -20,27 +21,26 @@ public class ResultController {
 	@Autowired
 	private ResultService result_service;
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/{race_id}")
 	@CrossOrigin( origins = "*")
-	public List<Result> getRaceResult(@PathVariable(name = "id") int id) {
-		return result_service.getRaceResult(id);
+	public List<Result> getRaceResult(@PathVariable(name = "race_id") int race_id) {
+		return result_service.getRaceResult(race_id);
+	}
+	@GetMapping(value = "/sprint/{race_id}")
+	@CrossOrigin( origins = "*")
+	public List<SprintResult> getRaceSprintResult(@PathVariable(name = "race_id") int race_id) {
+		return result_service.getRaceSprintResult(race_id);
 	}
 	
-	@GetMapping(value = "/{race_name}/{season}")
-	@CrossOrigin( origins = "*")
-	public List<Result> getRaceResult(@PathVariable(name = "race_name") String race_name, @PathVariable(name = "season") int season) {
-		return result_service.getRaceResult(race_name, season);
-	}
-	
-	@GetMapping(value = "/driverid/{driver_id}/{season}")
+	@GetMapping(value = "/{driver_id}/{season}")
 	@CrossOrigin( origins = "*")
 	public List<Result> getDriverResultsBySeason(@PathVariable(name = "driver_id") int driver_id, @PathVariable(name = "season") int season) {
 		return result_service.getDriverResultsBySeason(season, driver_id);
 	}
 	
-	@GetMapping(value = "/constructor/{name}/{season}")
+	@GetMapping(value = "/constructor/{constructor_id}/{season}")
 	@CrossOrigin( origins = "*")
-	public List<ConstructorResult> getConstructorResultsBySeason(@PathVariable(name = "name") String name, @PathVariable(name = "season") int season) {
-		return result_service.getConstructorResultsBySeason(season, name);
+	public List<ConstructorResult> getConstructorResultsBySeason(@PathVariable(name = "constructor_id") int constructor_id, @PathVariable(name = "season") int season) {
+		return result_service.getConstructorResultsBySeason(season, constructor_id);
 	}
 }

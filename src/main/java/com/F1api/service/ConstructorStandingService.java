@@ -19,8 +19,8 @@ public class ConstructorStandingService {
 		return csr.findConstructorStanding(season);
 	}
 	
-	public List<ConstructorStandingRow> getConstructorStanding(int season, String race_name) {
-		return csr.findConstructorStanding(season, race_name);
+	public List<ConstructorStandingRow> getConstructorStanding(int season, int race_id) {
+		return csr.findConstructorStanding(season, race_id);
 	}
 	
 	public List<ConstructorStanding> getConstructorStandingByRaces(int constructor_id, List<Integer> race_ids) {

@@ -30,10 +30,10 @@ public class StandingController {
 		return driver_standings_service.getDriverStanding(season);
 	}
 	
-	@GetMapping(value = "/drivers/{season}/{race_name}")
+	@GetMapping(value = "/drivers/{season}/{race_id}")
 	@CrossOrigin( origins = "*")
-	public List<DriverStandingRow> getDriverStanding(@PathVariable(name = "season") int season, @PathVariable(name = "race_name") String race_name) {
-		return driver_standings_service.getDriverStanding(season, race_name);
+	public List<DriverStandingRow> getDriverStanding(@PathVariable(name = "season") int season, @PathVariable(name = "race_id") int race_id) {
+		return driver_standings_service.getDriverStanding(season, race_id);
 	}
 	
 	@GetMapping(value = "/{driver_id}/{race_ids}")
@@ -48,10 +48,10 @@ public class StandingController {
 		return constructor_standings_service.getConstructorStanding(season);
 	}
 	
-	@GetMapping(value = "/constructors/{season}/{race_name}")
+	@GetMapping(value = "/constructors/{season}/{race_id}")
 	@CrossOrigin( origins = "*")
-	public List<ConstructorStandingRow> getConstructorStanding(@PathVariable(name = "season") int season, @PathVariable(name = "race_name") String race_name) {
-		return constructor_standings_service.getConstructorStanding(season, race_name);
+	public List<ConstructorStandingRow> getConstructorStanding(@PathVariable(name = "season") int season, @PathVariable(name = "race_id") int race_id) {
+		return constructor_standings_service.getConstructorStanding(season, race_id);
 	}
 	
 	@GetMapping(value = "/constructors/id/{constructor_id}/{race_ids}")

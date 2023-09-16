@@ -13,24 +13,24 @@ import com.F1api.model.DriverStandingRow;
 @Repository
 public interface DriverStandingRepository extends JpaRepository<DriverStanding, Integer>{
 	
-	@Query(value = "select ROW_NUMBER() OVER(order by sum(re.points) + coalesce(sum(sre.points),0) desc, min(re.positionorder) asc) as position, sum(re.points) + coalesce(sum(sre.points),0) as points, d.driverid, d.forename, d.surname, STRING_AGG( distinct c.name, ' / ') AS team, d.nationality from results re\r\n"
-			+ "join races r on r.raceid = re.raceid\r\n"
-			+ "join drivers d on d.driverid = re.driverid\r\n"
-			+ "join constructors c on c.constructorid = re.constructorid\r\n"
-			+ "left join sprintresults sre on (sre.driverid, sre.raceid) = (re.driverid, re.raceid)\r\n"
+	@Query(value = "select NEW com.F1api.model.DriverStandingRow (CAST(ROW_NUMBER() OVER(order by sum(re.points) + coalesce(sum(sre.points),0) desc, min(re.position_order) asc) AS Integer), "
+			+ "sum(re.points) + coalesce(sum(sre.points),0), "
+			+ "CAST(STRING_AGG(CONCAT(re.constructor.name, ',', re.id), ' / ') AS text), re.driver) from Result re\r\n"
+			+ "join Race r on r.id = re.raceid\r\n"
+			+ "left join SprintResult sre on (sre.driver.id, sre.raceid) = (re.driver.id, re.raceid)\r\n"
 			+ "where r.year = :season\r\n"
-			+ "group by (d.driverid, d.forename, d.surname, d.nationality)\r\n", nativeQuery = true)
+			+ "group by (re.driver)\r\n")
 	List<DriverStandingRow> findStanding(int season);
 	
-	@Query(value = "select ROW_NUMBER() OVER(order by sum(re.points) + coalesce(sum(sre.points),0) desc, min(re.positionorder) asc) as position, sum(re.points) + coalesce(sum(sre.points),0) as points, d.forename, d.surname, STRING_AGG( distinct c.name, ' / ') AS team, d.nationality  from results re\r\n"
-			+ "join races r on r.raceid = re.raceid\r\n"
-			+ "join drivers d on d.driverid = re.driverid\r\n"
-			+ "join constructors c on c.constructorid = re.constructorid\r\n"
-			+ "left join sprintresults sre on (sre.driverid, sre.raceid) = (re.driverid, re.raceid)\r\n"
-			+ "where r.year = :season and r.round <= (select round from races\r\n"
-			+ "								   where year = :season and name like :race_name)\r\n"
-			+ "group by (d.driverid, d.surname, d.nationality)", nativeQuery = true)
-	List<DriverStandingRow> findStanding(int season, String race_name);
+	@Query(value = "select NEW com.F1api.model.DriverStandingRow(CAST(ROW_NUMBER() OVER(order by sum(re.points) + coalesce(sum(sre.points),0) desc, min(re.position_order) asc) AS Integer),"
+			+ " sum(re.points) + coalesce(sum(sre.points),0), "
+			+ "CAST(STRING_AGG(CONCAT(re.constructor.name, ',', re.id), ' / ') AS text), re.driver)  from Result re "
+			+ "join Race r on r.id = re.raceid "
+			+ "left join SprintResult sre on (sre.driver.id, sre.raceid) = (re.driver.id, re.raceid) "
+			+ "where r.year = :season and r.round <= (select round from Race"
+			+ "								   where year = :season and id = :race_id)"
+			+ "group by re.driver")
+	List<DriverStandingRow> findStanding(int season, int race_id);
 	
 	List<DriverStanding> findByDriverIdAndRaceIdIn(int driver_id, List<Integer> race_ids);
 }
