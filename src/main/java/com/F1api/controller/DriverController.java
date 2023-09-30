@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.F1api.model.Driver;
+import com.F1api.repository.DriverRepository.DriverTeamMate;
 import com.F1api.service.DriverService;
 
 
@@ -26,6 +27,12 @@ public class DriverController {
 	@CrossOrigin( origins = "*")
 	public List<Driver> getDrivers() {
 		return driver_service.getDrivers();
+	}
+	
+	@GetMapping("/teammates/{driver_id}")
+	@CrossOrigin( origins = "*")
+	public List<DriverTeamMate> getTeamMates(@PathVariable(name = "driver_id") int driver_id) {
+		return driver_service.getTeamMates(driver_id);
 	}
 	
 	@GetMapping(value = "/{driver_ref}", produces = MediaType.IMAGE_PNG_VALUE)

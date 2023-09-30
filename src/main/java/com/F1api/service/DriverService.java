@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.F1api.model.Driver;
 import com.F1api.model.DriverInfo;
 import com.F1api.repository.DriverRepository;
+import com.F1api.repository.DriverRepository.DriverTeamMate;
 
 @Service
 public class DriverService {
@@ -31,12 +32,17 @@ public class DriverService {
 			d.setPodiums(info.getPodiums());
 			d.setHighest_race_position(info.getBestraceposition());
 			d.setHighest_grid_position(info.getBestgridposition());
+			d.setSeasons(info.getSeasons());
 		});
 		return drivers;
 	}
 	
 	public Driver getDriver(int id) {
 		return driver_repository.findById(id).get();
+	}
+	
+	public List<DriverTeamMate> getTeamMates(int driver_id) {
+		return driver_repository.findTeamMates(driver_id);
 	}
 	
 	public byte[] getDriverPicture(String driver_ref) throws IOException {

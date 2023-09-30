@@ -1,18 +1,13 @@
 package com.F1api;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.F1api.model.Circuit;
-import com.F1api.model.Driver;
-import com.F1api.model.Race;
-import com.F1api.repository.DriverRepository;
 import com.F1api.service.CircuitService;
 import com.F1api.service.ConstructorService;
+import com.F1api.service.DriverService;
 import com.F1api.service.DriverStandingService;
 import com.F1api.service.RaceService;
 
@@ -20,7 +15,7 @@ import com.F1api.service.RaceService;
 public class F1apiApplication implements CommandLineRunner{
 	
 	@Autowired
-	private DriverRepository dr;
+	private DriverService ds;
 	@Autowired
 	private RaceService rs;
 	@Autowired
@@ -45,7 +40,10 @@ public class F1apiApplication implements CommandLineRunner{
 //			System.out.println(circuit.getName() + " " + circuit.getRaces());
 //		}
 //		dsr.getDriverStanding(2023).forEach(row -> System.out.println(row.getDriver().getSurname() + " " + row.getTeam() + " " + row.getPoints()));
-//		cts.getConstructors().stream().filter(c -> c.getName().equals("Team Lotus")).forEach(c -> System.out.println(c.getName() + " " + c.getTitles()));
+//		cts.getConstructors().stream().filter(c -> c.getName().equals("Team Lotus")).forEach(c -> System.out.println(c.getName() + " " + c.getSeasons()));
+//		cts.getDriverConstructors(4).forEach(o -> System.out.println(o.getName() + o.getDriverSeasonPeriod()));
+//		cts.getDriverConstructors(1).forEach(o -> System.out.println(o.getName() + o.getDriverSeasonPeriod()));
+		cts.getDriverConstructors(847).forEach(o -> System.out.println(o.getName() + o.getDriverSeasonPeriod()));
 	}
 	
 }

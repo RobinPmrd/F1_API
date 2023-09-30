@@ -1,6 +1,10 @@
 package com.F1api.model;
 
 import java.sql.Date;
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,6 +48,8 @@ public class Driver {
     private int highest_grid_position;
     @Transient
     private Integer highest_race_position;
+    @Transient
+    private String seasons;
 	
     public int getId() {
 		return id;
@@ -93,6 +99,9 @@ public class Driver {
 	public Integer getHighestRacePosition() {
 		return highest_race_position;
 	}
+	public String getSeasons() {
+		return seasons;
+	}
 	public void setTitles(int titles) {
 		this.titles = titles;
 	}
@@ -113,6 +122,9 @@ public class Driver {
 	}
 	public void setHighest_race_position(Integer highest_race_position) {
 		this.highest_race_position = highest_race_position;
+	}
+	public void setSeasons(String seasons) {
+		this.seasons = seasons;
 	}
 	
 }

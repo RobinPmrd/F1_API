@@ -1,5 +1,7 @@
 package com.F1api.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -26,6 +28,20 @@ public class Constructor {
 	private int wins;
 	@Transient
 	private int races;
+	@Transient
+	private String driver_season_period;
+	@Transient
+	private List<Integer> seasons;
+	
+	public Constructor() {};
+	
+	public Constructor(Constructor c) {
+		this.id = c.getId();
+		this.constructor_ref = c.getConstructorRef();
+		this.name = c.getName();
+		this.nationality = c.getNationality();
+		this.url = c.getUrl();
+	}
 	
 	public int getId() {
 		return id;
@@ -59,6 +75,20 @@ public class Constructor {
 	}
 	public void addRaces(int races) {
 		this.races += races;
+	}
+	public String getDriverSeasonPeriod() {
+		return driver_season_period;
+	}
+	public void setDriverSeasonPeriod(String driver_season_period) {
+		this.driver_season_period = driver_season_period;
+	}
+
+	public List<Integer> getSeasons() {
+		return seasons;
+	}
+
+	public void setSeasons(List<Integer> seasons) {
+		this.seasons = seasons;
 	}
 	
 }

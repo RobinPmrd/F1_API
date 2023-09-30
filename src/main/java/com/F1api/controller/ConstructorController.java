@@ -27,6 +27,12 @@ public class ConstructorController {
 		return constructor_service.getConstructors();
 	}
 	
+	@GetMapping("/{driver_id}")
+	@CrossOrigin("*")
+	public List<Constructor> getDrivverConstructors(@PathVariable(name = "driver_id") int driver_id) {
+		return constructor_service.getDriverConstructors(driver_id);
+	}
+	
 	@GetMapping(value = "/{driver_ref}", produces = MediaType.IMAGE_PNG_VALUE)
 	@CrossOrigin( origins = "*")
     public byte[] getImage(@PathVariable("driver_ref") String driver_ref) throws IOException {

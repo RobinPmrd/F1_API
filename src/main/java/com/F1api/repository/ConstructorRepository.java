@@ -40,4 +40,23 @@ public interface ConstructorRepository extends JpaRepository<Constructor, Intege
 			+ "select sub.name_prefix, CAST(COALESCE(titles,0) AS INTEGER) as titles, CAST(wins AS INTEGER), CAST(races AS INTEGER) from sub2\r\n"
 			+ "right join sub on sub2.name_prefix = sub.name_prefix", nativeQuery = true)
 	List<Object[]> findTitlesWinsRaces();
+	
+	@Query("SELECT r.year FROM Result re "
+			+ "JOIN Race r ON r.id = re.raceid "
+			+ "WHERE constructor.id = :constructor_id "
+			+ "GROUP BY r.year "
+			+ "ORDER BY r.year")
+	List<Integer> findSeasons(int constructor_id);
+	
+	public interface DriverConstructor {
+		int getYear();
+		Constructor getConstructor();
+	}
+	
+	@Query("SELECT r.year as year, re.constructor as constructor FROM Result re "
+			+ "JOIN Race r ON r.id = re.raceid "
+			+ "WHERE re.driver.id = :driver_id "
+			+ "GROUP BY (r.year, re.constructor) "
+			+ "ORDER BY MIN(r.date)")
+	List<DriverConstructor> findDriverConstructors(int driver_id);
 }

@@ -1,10 +1,10 @@
 package com.F1api.service;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.F1api.model.Constructor;
 import com.F1api.repository.ConstructorRepository;
+import com.F1api.repository.ConstructorRepository.DriverConstructor;
 
 @Service
 public class ConstructorService {
@@ -46,8 +47,29 @@ public class ConstructorService {
 			else {
 				constructors.remove(constructors.indexOf(constructors.get(i)));
 			}
+			constructors.get(i).setSeasons(constructor_repository.findSeasons(constructors.get(i).getId()));
 		}
 		return constructors;
+	}
+	
+	public List<Constructor> getDriverConstructors(int driver_id) {
+		List<DriverConstructor> driver_constructors = constructor_repository.findDriverConstructors(driver_id);
+		List<Constructor> new_driver_constructors = new ArrayList<>();
+		
+		for (int i = 0; i < driver_constructors.size(); i++) {
+			DriverConstructor dc = driver_constructors.get(i);
+			Constructor c = new Constructor(dc.getConstructor());
+			
+			int starting_year = dc.getYear();
+			int final_year = starting_year;
+			while (i < driver_constructors.size()-1 && driver_constructors.get(i+1).getConstructor().getId() == c.getId() && driver_constructors.get(i+1).getYear() == final_year+1) {
+				final_year++;
+				i++;
+			}
+			c.setDriverSeasonPeriod(starting_year != final_year ? starting_year+"-"+final_year : starting_year+"");
+			new_driver_constructors.add(c);
+		}
+		return new_driver_constructors;
 	}
 	
 	public byte[] getTeamLogo(String constructor_ref) throws IOException {

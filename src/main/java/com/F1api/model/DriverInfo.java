@@ -9,4 +9,5 @@ public interface DriverInfo {
 	Integer getPodiums();
 	Integer getBestraceposition();
 	Integer getBestgridposition();
+	String getSeasons();
 }

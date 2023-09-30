@@ -16,12 +16,7 @@ public class RaceService {
 	private RaceRepository race_repository;
 	
 	public List<Race> getRaces() {
-		List<Race> races = race_repository.findAll();
-		Map<Integer, String> circuits_races_count = race_repository.findRacesWinner().stream().collect(Collectors.toMap(
-				result -> (Integer) result[0], // raceid 
-				result -> (String) result[1])); // races_count
-		races.stream().forEach(race -> race.setWinner(circuits_races_count.get(race.getId())));
-		return races;
+		return race_repository.findAll();
 	}
 	
 	public List<Race> getRaces(int season) {
@@ -34,5 +29,9 @@ public class RaceService {
 	
 	public Race getRace(String name, int season) {
 		return race_repository.findAll().stream().filter(race -> race.getName().equals(name) && race.getYear() == season).findFirst().get();
+	}
+	
+	public List<Race> getRacesWinByDriver(int driver_id) {
+		return race_repository.findRacesWinByDriver(driver_id);
 	}
 }

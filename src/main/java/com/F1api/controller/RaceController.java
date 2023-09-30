@@ -37,4 +37,10 @@ public class RaceController {
 	public Race getRace(@PathVariable(name = "name") String name, @PathVariable(name = "season") int season) {
 		return race_service.getRace(name, season);
 	}
+	
+	@GetMapping(value = "/driver/{driver_id}")
+	@CrossOrigin( origins = "*")
+	public List<Race> getRacesWinByDriver(@PathVariable(name = "driver_id") int driver_id) {
+		return race_service.getRacesWinByDriver(driver_id);
+	}
 }

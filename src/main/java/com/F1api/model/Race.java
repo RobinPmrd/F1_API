@@ -34,8 +34,6 @@ public class Race {
 	private Time time;
 	@Column(name = "url", length = 255)
 	private String url;
-	@Transient
-	private String winner;
 	
 	public int getId() {
 		return id;
@@ -60,11 +58,5 @@ public class Race {
 	}
 	public String getUrl() {
 		return url;
-	}
-	public String getWinner() {
-		return winner;
-	}
-	public void setWinner(String winner) {
-		this.winner = winner;
 	}
 }
