@@ -23,17 +23,17 @@ public class DriverService {
 	public List<Driver> getDrivers() {
 		List<Driver> drivers = driver_repository.findAll();
 		List<DriverInfo> drivers_info = driver_repository.findTitlesWinsRaces();
-		drivers.forEach(d -> {
-			DriverInfo info = drivers_info.stream().filter(i -> i.getId() == d.getId()).findFirst().get();
-			d.setGrandprix(info.getRaces());
-			d.setPoles(info.getPoles());
-			d.setWins(info.getWins());
-			d.setTitles(info.getTitles());
-			d.setPodiums(info.getPodiums());
-			d.setHighest_race_position(info.getBestraceposition());
-			d.setHighest_grid_position(info.getBestgridposition());
-			d.setSeasons(info.getSeasons());
-		});
+//		drivers.forEach(d -> {
+//			DriverInfo info = drivers_info.stream().filter(i -> i.getId() == d.getId()).findFirst().get();
+//			d.setGrandprix(info.getRaces());
+//			d.setPoles(info.getPoles());
+//			d.setWins(info.getWins());
+//			d.setTitles(info.getTitles());
+//			d.setPodiums(info.getPodiums());
+//			d.setHighest_race_position(info.getBestraceposition());
+//			d.setHighest_grid_position(info.getBestgridposition());
+//			d.setSeasons(info.getSeasons());
+//		});
 		return drivers;
 	}
 	

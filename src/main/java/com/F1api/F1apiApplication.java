@@ -43,7 +43,8 @@ public class F1apiApplication implements CommandLineRunner{
 //		cts.getConstructors().stream().filter(c -> c.getName().equals("Team Lotus")).forEach(c -> System.out.println(c.getName() + " " + c.getSeasons()));
 //		cts.getDriverConstructors(4).forEach(o -> System.out.println(o.getName() + o.getDriverSeasonPeriod()));
 //		cts.getDriverConstructors(1).forEach(o -> System.out.println(o.getName() + o.getDriverSeasonPeriod()));
-		cts.getDriverConstructors(847).forEach(o -> System.out.println(o.getName() + o.getDriverSeasonPeriod()));
+//		cts.getDriverConstructors(847).forEach(o -> System.out.println(o.getName() + o.getDriverSeasonPeriod()));
+		ds.getDrivers().stream().forEach(d -> System.out.println(d.getForename()));
 	}
 	
 }
