@@ -1,9 +1,12 @@
 package com.F1api.model;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Getter
 public class DriverStandingRow {
 	
 	private int position;
@@ -25,19 +28,4 @@ public class DriverStandingRow {
 		this.driver = driver;
 	}
 
-	public int getPosition() {
-		return position;
-	}
-
-	public double getPoints() {
-		return points;
-	}
-
-	public Driver getDriver() {
-		return driver;
-	}
-
-	public String getTeam() {
-		return team;
-	}
 }

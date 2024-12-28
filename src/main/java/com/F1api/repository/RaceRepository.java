@@ -13,11 +13,11 @@ public interface RaceRepository extends JpaRepository<Race, Integer> {
 
 	List<Race> findByName(String name);
 	
-	@Query(value = "SELECT r from Race r WHERE r.year = :season and r.date < (select DATE(NOW())) ORDER BY r.round")
+	@Query(value = "SELECT r from Race r WHERE r.year = :season and r.date < CURRENT_DATE ORDER BY r.round")
 	List<Race> findRaces(int season);
 	
 	@Query(value = "SELECT r from Race r "
-			+ "JOIN Result re ON re.raceid = r.id "
+			+ "JOIN Result re ON re.raceId = r.id "
 			+ "WHERE re.position = 1 and re.driver.id = :driver_id")
 	List<Race> findRacesWinByDriver(int driver_id);
 }

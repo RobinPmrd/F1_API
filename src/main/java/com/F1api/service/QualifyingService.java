@@ -19,6 +19,6 @@ public class QualifyingService {
 	}
 	
 	public List<Qualifying> getRaceQualifying(int id) {
-		return qr.findByRaceid(id);
+		return qr.findByRaceId(id);
 	}
 }

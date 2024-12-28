@@ -1,25 +1,22 @@
 package com.F1api.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
-@Table(name = "sprintresults")
+@Table(name = "sprint_results")
 public class SprintResult {
 	@Id
-	@Column(name = "sprintresultid")
+	@Column(name = "sprint_result_id")
 	private int id;
-	@Column(name = "raceid")
-	private int raceid;
+	@Column(name = "race_id")
+	private int raceId;
 	@OneToOne
-    @JoinColumn(name = "driverid", referencedColumnName = "driverid")
+    @JoinColumn(name = "driver_id", referencedColumnName = "driver_id")
 	private Driver driver;
 	@OneToOne
-    @JoinColumn(name = "constructorid", referencedColumnName = "constructorid")
+    @JoinColumn(name = "constructor_id", referencedColumnName = "constructor_id")
 	private Constructor constructor;
 	@Column(name = "number")
 	private Integer number;
@@ -27,10 +24,10 @@ public class SprintResult {
 	private int grid;
 	@Column(name = "position")
 	private Integer position;
-	@Column(name = "positiontext")
-	private String position_text;
-	@Column(name = "positionorder")
-	private int position_order;
+	@Column(name = "position_text")
+	private String positionText;
+	@Column(name = "position_order")
+	private int positionOrder;
 	@Column(name = "points")
 	private float points;
 	@Column(name = "laps")
@@ -39,60 +36,12 @@ public class SprintResult {
 	private String time;
 	@Column(name = "milliseconds")
 	private Integer milliseconds;
-	@Column(name = "fastestlap")
-	private Integer fastest_lap;
-	@Column(name = "fastestlaptime")
-	private String fastest_lap_time;
+	@Column(name = "fastest_lap")
+	private Integer fastestLap;
+	@Column(name = "fastest_lap_time")
+	private String fastestLapTime;
 	@OneToOne
-    @JoinColumn(name = "statusid", referencedColumnName = "statusid")
+    @JoinColumn(name = "status_id", referencedColumnName = "status_id")
 	private Status status;
-	
-	public int getId() {
-		return id;
-	}
-	public int getRaceid() {
-		return raceid;
-	}
-	public Driver getDriver() {
-		return driver;
-	}
-	public Constructor getConstructor() {
-		return constructor;
-	}
-	public Integer getNumber() {
-		return number;
-	}
-	public int getGrid() {
-		return grid;
-	}
-	public Integer getPosition() {
-		return position;
-	}
-	public String getPosition_text() {
-		return position_text;
-	}
-	public int getPosition_order() {
-		return position_order;
-	}
-	public float getPoints() {
-		return points;
-	}
-	public int getLaps() {
-		return laps;
-	}
-	public String getTime() {
-		return time;
-	}
-	public Integer getMilliseconds() {
-		return milliseconds;
-	}
-	public Integer getFastest_lap() {
-		return fastest_lap;
-	}
-	public String getFastest_lap_time() {
-		return fastest_lap_time;
-	}
-	public Status getStatus() {
-		return status;
-	}
+
 }

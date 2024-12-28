@@ -4,45 +4,26 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.Getter;
 
+@Getter
 @Entity
-@Table(name = "constructorstandings")
+@Table(name = "constructor_standings")
 public class ConstructorStanding {
 	@Id
-	@Column(name = "constructorstandingsid")
-	private int constructor_standings_id;
-	@Column(name = "raceid")
+	@Column(name = "constructor_standings_id")
+	private int constructorStandingsId;
+	@Column(name = "race_id")
 	private int raceId;
-	@Column(name = "constructorid")
+	@Column(name = "constructor_id")
 	private int constructorId;
 	@Column(name = "points")
 	private float points;
 	@Column(name = "position")
 	private int position;
-	@Column(name = "positiontext")
-	private String position_text;
+	@Column(name = "position_text")
+	private String positionText;
 	@Column(name = "wins")
 	private int wins;
-	
-	public int getConstructorStandingsId() {
-		return constructor_standings_id;
-	}
-	public int getRaceId() {
-		return raceId;
-	}
-	public int getConstructorId() {
-		return constructorId;
-	}
-	public float getPoints() {
-		return points;
-	}
-	public int getPosition() {
-		return position;
-	}
-	public String getPositionText() {
-		return position_text;
-	}
-	public int getWins() {
-		return wins;
-	}
+
 }

@@ -1,41 +1,23 @@
 package com.F1api.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
-@Table(name = "constructorresults")
+@Table(name = "constructor_results")
 public class ConstructorResult {
 	@Id
-	@Column(name = "constructorresultsid")
-	private int constructor_results_id;
-	@Column(name = "raceid")
-	private int race_id;
+	@Column(name = "constructor_results_id")
+	private int constructorResultsId;
+	@Column(name = "race_id")
+	private int raceId;
 	@OneToOne
-    @JoinColumn(name = "constructorid", referencedColumnName = "constructorid")
+    @JoinColumn(name = "constructor_id", referencedColumnName = "constructor_id")
 	private Constructor constructor;
 	@Column(name = "points")
 	private float points;
 	@Column(name = "status")
 	private String status;
 	
-	public int getConstructorResultsId() {
-		return constructor_results_id;
-	}
-	public int getRaceId() {
-		return race_id;
-	}
-	public Constructor getConstructor() {
-		return constructor;
-	}
-	public float getPoints() {
-		return points;
-	}
-	public String getStatus() {
-		return status;
-	}
 }

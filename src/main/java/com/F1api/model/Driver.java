@@ -1,25 +1,19 @@
 package com.F1api.model;
 
+import jakarta.persistence.*;
+import lombok.Data;
+
 import java.sql.Date;
-import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
-
+@Data
 @Entity
 @Table(name = "drivers")
 public class Driver {
     @Id
-    @Column(name="driverid")
+    @Column(name="driver_id")
     private int id;
-    @Column(name="driverref", length=255, nullable=false)
-    private String driver_ref;
+    @Column(name="driver_ref", length=255, nullable=false)
+    private String driverRef;
     @Column(name="number", nullable=true)
     private Integer number;
     @Column(name="code", length=255, nullable=true)
@@ -45,86 +39,10 @@ public class Driver {
     @Transient
     private int poles;
     @Transient
-    private int highest_grid_position;
+    private int highestGridPosition;
     @Transient
-    private Integer highest_race_position;
+    private Integer highestRacePosition;
     @Transient
     private String seasons;
-	
-    public int getId() {
-		return id;
-	}
-	public String getDriverRef() {
-		return driver_ref;
-	}
-	public Integer getNumber() {
-		return number;
-	}
-	public String getCode() {
-		return code;
-	}
-	public String getForename() {
-		return forename;
-	}
-	public String getSurname() {
-		return surname;
-	}
-	public Date getDob() {
-		return dob;
-	}
-	public String getNationality() {
-		return nationality;
-	}
-	public String getUrl() {
-		return url;
-	}
-	public int getTitles() {
-		return titles;
-	}
-	public int getGrandprix() {
-		return grandprix;
-	}
-	public int getWins() {
-		return wins;
-	}
-	public int getPodiums() {
-		return podiums;
-	}
-	public int getPoles() {
-		return poles;
-	}
-	public int getHighestGridPosition() {
-		return highest_grid_position;
-	}
-	public Integer getHighestRacePosition() {
-		return highest_race_position;
-	}
-	public String getSeasons() {
-		return seasons;
-	}
-	public void setTitles(int titles) {
-		this.titles = titles;
-	}
-	public void setGrandprix(int grandprix) {
-		this.grandprix = grandprix;
-	}
-	public void setWins(int wins) {
-		this.wins = wins;
-	}
-	public void setPoles(int poles) {
-		this.poles = poles;
-	}
-	public void setPodiums(int podiums) {
-		this.podiums = podiums;
-	}
-	public void setHighest_grid_position(int highest_grid_position) {
-		this.highest_grid_position = highest_grid_position;
-	}
-	public void setHighest_race_position(Integer highest_race_position) {
-		this.highest_race_position = highest_race_position;
-	}
-	public void setSeasons(String seasons) {
-		this.seasons = seasons;
-	}
-	
+
 }
