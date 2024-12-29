@@ -22,11 +22,11 @@ public class ResultService {
 	private SprintResultRepository srr;
 	
 	public List<Result> getRaceResult(int race_id) {
-		return rr.findByRaceid(race_id);
+		return rr.findByRaceId(race_id);
 	}
 	
 	public List<SprintResult> getRaceSprintResult(int race_id) {
-		return srr.findByRaceid(race_id);
+		return srr.findByRaceId(race_id);
 	}
 	
 	public List<Result> getDriverResultsBySeason(int season, int driver_id) {

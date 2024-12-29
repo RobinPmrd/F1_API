@@ -1,25 +1,22 @@
 package com.F1api.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Getter;
 
+@Getter
 @Entity
 @Table(name = "qualifying")
 public class Qualifying {
 	@Id
-	@Column(name = "qualifyid")
+	@Column(name = "qualify_id")
 	private int id;
-	@Column(name = "raceid")
-	private int raceid;
+	@Column(name = "race_id")
+	private int raceId;
 	@OneToOne
-	@JoinColumn(name = "driverid", referencedColumnName = "driverid")
+	@JoinColumn(name = "driver_id", referencedColumnName = "driver_id")
 	private Driver driver;
 	@OneToOne
-	@JoinColumn(name = "constructorid", referencedColumnName = "constructorid")
+	@JoinColumn(name = "constructor_id", referencedColumnName = "constructor_id")
 	private Constructor constructor;
 	@Column(name = "number")
 	private int number;
@@ -31,32 +28,5 @@ public class Qualifying {
 	private String q2;
 	@Column(name = "q3")
 	private String q3;
-	
-	public int getId() {
-		return id;
-	}
-	public int getRaceId() {
-		return raceid;
-	}
-	public Driver getDriver() {
-		return driver;
-	}
-	public Constructor getConstructor() {
-		return constructor;
-	}
-	public int getNumber() {
-		return number;
-	}
-	public int getPosition() {
-		return position;
-	}
-	public String getQ1() {
-		return q1;
-	}
-	public String getQ2() {
-		return q2;
-	}
-	public String getQ3() {
-		return q3;
-	}
+
 }

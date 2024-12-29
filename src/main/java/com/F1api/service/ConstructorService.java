@@ -47,7 +47,7 @@ public class ConstructorService {
 			else {
 				constructors.remove(constructors.indexOf(constructors.get(i)));
 			}
-			constructors.get(i).setSeasons(constructor_repository.findSeasons(constructors.get(i).getId()));
+//			constructors.get(i).setSeasons(constructor_repository.findSeasons(constructors.get(i).getId()));
 		}
 		return constructors;
 	}

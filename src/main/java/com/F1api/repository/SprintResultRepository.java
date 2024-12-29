@@ -10,5 +10,5 @@ import com.F1api.model.SprintResult;
 @Repository
 public interface SprintResultRepository extends JpaRepository<SprintResult, Integer> {
 	
-	List<SprintResult> findByRaceid(int race_id);
+	List<SprintResult> findByRaceId(int race_id);
 }

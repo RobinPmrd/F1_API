@@ -1,5 +1,8 @@
 package com.F1api.model;
 
+import lombok.Getter;
+
+@Getter
 public class ConstructorStandingRow {
 	private int position;
 	private double points;
@@ -10,16 +13,5 @@ public class ConstructorStandingRow {
 		this.points = points;
 		this.constructor = constructor;
 	}
-	
-	public int getPosition() {
-		return position;
-	}
-	
-	public double getPoints() {
-		return points;
-	}
-	
-	public Constructor getConstructor() {
-		return constructor;
-	}
+
 }
