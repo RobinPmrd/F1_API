@@ -1,18 +1,17 @@
 package com.F1api.service;
 
+import com.F1api.model.Driver;
+import com.F1api.model.DriverInfo;
+import com.F1api.repository.DriverRepository;
+import com.F1api.repository.DriverRepository.DriverTeamMate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.F1api.model.Driver;
-import com.F1api.model.DriverInfo;
-import com.F1api.repository.DriverRepository;
-import com.F1api.repository.DriverRepository.DriverTeamMate;
 
 @Service
 public class DriverService {
@@ -23,17 +22,17 @@ public class DriverService {
 	public List<Driver> getDrivers() {
 		List<Driver> drivers = driver_repository.findAll();
 		List<DriverInfo> drivers_info = driver_repository.findTitlesWinsRaces();
-//		drivers.forEach(d -> {
-//			DriverInfo info = drivers_info.stream().filter(i -> i.getId() == d.getId()).findFirst().get();
-//			d.setGrandprix(info.getRaces());
-//			d.setPoles(info.getPoles());
-//			d.setWins(info.getWins());
-//			d.setTitles(info.getTitles());
-//			d.setPodiums(info.getPodiums());
-//			d.setHighest_race_position(info.getBestraceposition());
-//			d.setHighest_grid_position(info.getBestgridposition());
-//			d.setSeasons(info.getSeasons());
-//		});
+		drivers.forEach(d -> {
+			DriverInfo info = drivers_info.stream().filter(i -> i.getId() == d.getId()).findFirst().get();
+			d.setGrandprix(info.getRaces());
+			d.setPoles(info.getPoles());
+			d.setWins(info.getWins());
+			d.setTitles(info.getTitles());
+			d.setPodiums(info.getPodiums());
+			d.setHighestRacePosition(info.getBestraceposition());
+			d.setHighestGridPosition(info.getBestgridposition());
+			d.setSeasons(info.getSeasons());
+		});
 		return drivers;
 	}
 	
